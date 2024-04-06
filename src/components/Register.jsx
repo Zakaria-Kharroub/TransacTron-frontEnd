@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import imageLogin from '../images/img-login.png';
+import { useNavigate } from 'react-router-dom';
+
 import {
   MDBContainer,
   MDBCard,
@@ -16,6 +18,8 @@ export const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
@@ -25,17 +29,21 @@ export const Register = () => {
                 password
             });
             console.log(data);
-            alert('register sucessfully');
+            alert('register successfully');
 
             setName('');
             setEmail('');
             setPassword('');
-            
+
+            // Redirect to /login
+            navigate('/login');
 
         } catch (error) {
             console.log(error);
         }
     };
+
+
 
   return (
     <MDBContainer className="my-1 mt-5">
